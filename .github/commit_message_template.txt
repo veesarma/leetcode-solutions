@@ -1,0 +1,14 @@
+<type>(<scope>): <short summary>
+
+Why:
+- <one-line rationale>
+
+Changes:
+- <bullet 1>
+- <bullet 2>
+
+Notes:
+- <risk/rollback, links, or TODOs>
+
+# Types: feat, fix, refactor, perf, test, docs, chore, build, ci
+# Scope examples: repo, cli, docker, problems, tests

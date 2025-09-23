@@ -1,0 +1,55 @@
+[build-system]
+# Required by PEP 517/518 to build wheels/sdists.
+requires = ["hatchling>=1.24"]
+build-backend = "hatchling.build"
+
+[project]
+name = "leetcode-solutions"
+version = "0.1.0"
+description = "LeetCode solutions with tests, uv-managed, Dockerized, and a CLI to run problems."
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+license = { text = "MIT" }
+dependencies = []  # runtime dependencies go here
+
+# Creates the CLI command `leetcode` which calls leetcode.cli:main
+[project.scripts]
+leetcode = "leetcode.cli:main"
+
+# Tell hatchling (our build backend) where to find source code
+[tool.hatch.build.targets.wheel]
+packages = ["src/leetcode"]
+
+# Configure pytest discovery
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-q"
+testpaths = ["tests"]
+
+# Configure Black formatter
+[tool.black]
+line-length = 100
+target-version = ["py311"]
+
+# Configure Ruff linter
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src", "tests"]
+exclude = [".venv"]
+
+[tool.ruff.lint]
+# Enable useful rule sets:
+# E = pycodestyle errors
+# F = pyflakes errors
+# I = import sorting
+# UP = pyupgrade (modernizes syntax)
+select = ["E", "F", "I", "UP"]
+
+[dependency-groups]
+dev = [
+    "black>=25.9.0",
+    "pytest>=8.4.2",
+    "ruff>=0.13.1",
+]
