@@ -13,3 +13,5 @@ jobs:
       - run: uv run ruff check .
       - run: uv run black --check .
       - run: uv run pytest -q
+      - name: Run pre-commit hooks
+        run: uv run pre-commit run --all-files
