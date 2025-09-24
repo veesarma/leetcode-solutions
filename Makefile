@@ -1,32 +1,26 @@
-.PHONY: setup lock test lint fmt run build docker-run ci
+.PHONY: setup test lint fmt precommit build run docker-run
 
-# Create/refresh local .venv and install deps
-setup:
+setup:        ## Create/refresh local .venv and install deps
 	uv sync
 
-# Pin dependencies
-lock:
-	uv lock
-
-# Run unit tests
-test:
+test:         ## Run unit tests
 	uv run pytest -q
 
-# Lint (Ruff) and format-check (Black)
-lint:
+lint:         ## Lint with Ruff
 	uv run ruff check .
-fmt:
+
+fmt:          ## Format with Ruff & Black
+	uv run ruff format .
 	uv run black .
 
-# Run a problem: make run PROBLEM=two-sum INPUT='{"nums":[2,7,11,15],"target":9}'
-run:
+precommit:    ## Run all pre-commit hooks
+	uv run pre-commit run --all-files
+
+build:        ## Build Docker image
+	docker build -t leetcode-solutions .
+
+run:          ## Run a problem: make run PROBLEM=two-sum INPUT='{"nums":[2,7,11,15],"target":9}'
 	uv run leetcode run $(PROBLEM) --input '$(INPUT)'
 
-# Build and run Docker (Colima/Docker Desktop must be running)
-build:
-	docker build -t leetcode-solutions .
-docker-run:
+docker-run:   ## Run inside Docker: make docker-run CMD="list"
 	docker run --rm -it leetcode-solutions $(CMD)
-
-# Simulate CI locally
-ci: setup lint test
