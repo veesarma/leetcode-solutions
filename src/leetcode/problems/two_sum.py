@@ -1,7 +1,5 @@
-from typing import List
-
-def solve(nums: List[int], target: int) -> List[int]:
-    idx = {}
+def solve(nums: list[int], target: int) -> list[int]:
+    idx: dict[int, int] = {}
     for i, x in enumerate(nums):
         need = target - x
         if need in idx:
