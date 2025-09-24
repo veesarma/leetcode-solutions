@@ -1,13 +1,20 @@
-# LeetCode Solutions (uv + Docker)
+# 🧩 LeetCode Solutions (uv + Docker)
 
-A clean, reproducible Python repo for LeetCode solutions with tests, managed by **uv**, and runnable via Docker.
+A **production-ready**, fully reproducible Python project for LeetCode solutions — complete with:
 
-## Quickstart (local)
+- **Dependency management** via [uv](https://docs.astral.sh/uv/)
+- **Containerized runtime** (Docker/Colima compatible)
+- **Command-line interface (CLI)** to run problems easily
+- **Unit tests**, linting, formatting, and CI (GitHub Actions)
+
+---
+
+## 🚀 Quickstart
+
+### 1. Clone & Install Dependencies
 
 ```bash
+git clone https://github.com/<YOUR_USERNAME>/leetcode-solutions.git
+cd leetcode-solutions
 uv sync
-uv run leetcode --help
-uv run leetcode list
-uv run leetcode run two-sum --input '{"nums":[2,7,11,15],"target":9}'
-uv run pytest -q
 
