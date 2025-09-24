@@ -1,0 +1,37 @@
+[build-system]
+requires = ["hatchling>=1.24"]
+build-backend = "hatchling.build"
+
+[project]
+name = "leetcode-solutions"
+version = "0.1.0"
+description = "LeetCode solutions with tests, uv-managed, Dockerized, and a CLI to run problems."
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+license = { text = "MIT" }
+dependencies = []
+
+[project.scripts]
+leetcode = "leetcode.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/leetcode"]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-q"
+testpaths = ["tests"]
+
+[tool.black]
+line-length = 100
+target-version = ["py311"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src", "tests"]
+exclude = [".venv"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
